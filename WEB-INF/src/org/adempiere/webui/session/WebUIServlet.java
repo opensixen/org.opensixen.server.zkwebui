@@ -47,9 +47,9 @@ import org.zkoss.zk.ui.http.DHtmlLayoutServlet;
  */
 public class WebUIServlet extends DHtmlLayoutServlet
 {
-    /**
-	 * 
-	 */
+	// ServletConfig 
+	private ServletConfig servletConfig; 
+
 	private static final long serialVersionUID = 261899419681731L;
 	
 	/** Logger for the class * */
@@ -64,6 +64,10 @@ public class WebUIServlet extends DHtmlLayoutServlet
     {
         super.init(servletConfig);
 
+        // HttpBrigde requires config
+        this.servletConfig = servletConfig;
+        
+        
         /** Initialise context for the current thread*/
         ServerContext.newInstance();
         Env.setContextProvider(new ZkContextProvider());
@@ -108,7 +112,7 @@ public class WebUIServlet extends DHtmlLayoutServlet
 
     public ServletConfig getServletConfig()
     {
-        return super.getServletConfig();
+        return servletConfig;
     }
 
     public String getServletInfo()
